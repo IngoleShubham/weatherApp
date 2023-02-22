@@ -18,6 +18,7 @@ function App() {
         console.log(err.response.data)
       })
       setLocation('')
+      setErrors('')
     }
   }
   
@@ -34,43 +35,51 @@ function App() {
           type='text' />
       </div>
 
-      <div style={{"textAlign": "center"}}>
-        {error.cod}<br/>
-        {error.message}
-      </div> 
+      {/* <div style={{"textAlign": "center"}}>
+        {error ? <span>{error.cod}<br/>
+        {error.message}</span> : Response}
 
-      <div className='container'>
-        <div className='top'>
-          <div className='location'>
-            <p className='bold'>{data.name}</p>
-          </div>
-
-          <div className='temprature'>
-            {data.main ? <h1>{Math.floor(data.main.temp) - 273}°C</h1> : null}
-          </div>
-
-          <div className='description'>
-            {data.weather ? <p>{data.weather[0].description}</p> : null}
-          </div>
-        </div>
-
-        <div className='bottom'>
-          <div className='feels'>
-            {data.main ? <p className='bold'>{data.main.feels_like}°K</p> : null}
-            <p>Feels Like</p>
-          </div>
-          <div className='humidity'>
-            {data.main ? <p className='bold'>{data.main.humidity}%</p> : null}
-            <p>Humidity</p>
-          </div>
-          <div className='wind'>
-            {data.wind ? <p className='bold'>{data.wind.speed} Kmph</p> : null}
-            <p>Wind speed</p>
-          </div>
-
-        </div>
+        
+      </div>  */}
+      {error ? (
+      <div style={{textAlign: "center"}}>
+        <span>{error.cod}<br/>{error.message}</span>
       </div>
+      ) 
+        : <div className='container'>
+            <div className='top'>
+              <div className='location'>
+                <p className='bold'>{data.name}</p>
+              </div>
+
+              <div className='temprature'>
+                {data.main ? <h1>{Math.floor(data.main.temp) - 273}°C</h1> : null}
+              </div>
+
+              <div className='description'>
+                {data.weather ? <p>{data.weather[0].description}</p> : null}
+              </div>
+            </div>
+
+            <div className='bottom'>
+              <div className='feels'>
+                {data.main ? <p className='bold'>{data.main.feels_like}°K</p> : null}
+                <p>Feels Like</p>
+              </div>
+              <div className='humidity'>
+                {data.main ? <p className='bold'>{data.main.humidity}%</p> : null}
+                <p>Humidity</p>
+              </div>
+              <div className='wind'>
+                {data.wind ? <p className='bold'>{data.wind.speed} Kmph</p> : null}
+                <p>Wind speed</p>
+              </div>
+            </div>
+          </div>
+        }
+
     </div>
+
   )
 }
 
